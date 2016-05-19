@@ -1,0 +1,10 @@
+.metadata
+.idea
+.classpath
+.project
+target/
+.gradle
+build
+.iml
+out/
+.class
