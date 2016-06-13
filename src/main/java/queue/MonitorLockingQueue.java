@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Created by maverick on 4/11/2016.
  */
-public class SpinWaitQueue extends MyBlockingQueue {
+public class MonitorLockingQueue extends MyBlockingQueue {
 
     @Override
     public boolean add(Integer item) {
@@ -34,13 +34,13 @@ public class SpinWaitQueue extends MyBlockingQueue {
 
     final LinkedList<Integer> list;
 
-    public SpinWaitQueue() {
+    public MonitorLockingQueue() {
         list = new LinkedList<>();
     }
 
     @Override
-    public SpinWaitQueue clone() {
-        return new SpinWaitQueue();
+    public MonitorLockingQueue clone() {
+        return new MonitorLockingQueue();
     }
 
     @Override
