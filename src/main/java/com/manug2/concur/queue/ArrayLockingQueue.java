@@ -1,4 +1,4 @@
-package queue;
+package com.manug2.concur.queue;
 
 /**
  * Created by maverick on 4/11/2016.

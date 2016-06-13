@@ -1,4 +1,4 @@
-package forkJoin;
+package com.manug2.concur.forkJoin;
 
 import org.junit.Test;
 

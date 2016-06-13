@@ -1,4 +1,4 @@
-package queue;
+package com.manug2.concur.queue;
 
 import java.util.Collection;
 import java.util.Iterator;

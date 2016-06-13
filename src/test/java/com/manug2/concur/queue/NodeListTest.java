@@ -1,4 +1,4 @@
-package queue;
+package com.manug2.concur.queue;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package queue;
+package com.manug2.concur.queue;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

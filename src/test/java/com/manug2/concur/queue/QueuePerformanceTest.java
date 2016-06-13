@@ -1,4 +1,4 @@
-package queue;
+package com.manug2.concur.queue;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 /**
  * Created by maverick on 5/15/2016.
  */
-public class QueuePerformanceTest {
+public abstract class QueuePerformanceTest {
     final BlockingQueue<Integer> queue;
     final int num_of_items;
     final String testName;

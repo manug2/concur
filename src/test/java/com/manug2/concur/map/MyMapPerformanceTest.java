@@ -1,8 +1,7 @@
-package map;
+package com.manug2.concur.map;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import queue.MyBlockingQueue;
 
 import java.util.ArrayList;
 import java.util.List;

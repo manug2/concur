@@ -1,26 +1,22 @@
-package queue;
+package com.manug2.concur.queue;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-public class MyQueueTest {
+public class ArrayBlockingQueueTest {
 
-    MyBlockingQueue queue;
+    BlockingQueue<Integer> queue;
 
     @Before
     public void setup() {
-        this.queue = new ArrayLockingQueue(10);
+        this.queue = new ArrayBlockingQueue<>(10);
     }
 
     @Test

@@ -1,10 +1,9 @@
 
-package queue;
+package com.manug2.concur.queue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +16,7 @@ public class ReEntrantLockQueueTest {
 
     @Before
     public void setup() {
-        this.queue = new ReEntrantLockQueue<>(10);
+        this.queue = new ReEntrantLockQueue(10);
     }
 
     @Test

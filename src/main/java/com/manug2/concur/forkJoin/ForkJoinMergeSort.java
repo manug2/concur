@@ -1,4 +1,4 @@
-package forkJoin;
+package com.manug2.concur.forkJoin;
 
 import java.util.Arrays;
 import java.util.concurrent.RecursiveAction;

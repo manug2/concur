@@ -1,14 +1,13 @@
-package map;
+package com.manug2.concur.map;
 
 import org.junit.Test;
-import queue.MyBlockingQueue;
 
 import java.util.concurrent.*;
 
 /**
  * Created by maverick on 5/15/2016.
  */
-public class MapPerformanceTest {
+public abstract class MapPerformanceTest {
     final ConcurrentMap<Integer, String> map;
     final int num_of_items;
     final String testName;

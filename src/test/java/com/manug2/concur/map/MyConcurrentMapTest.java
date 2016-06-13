@@ -1,4 +1,4 @@
-package map;
+package com.manug2.concur.map;
 
 import org.junit.Before;
 import org.junit.Test;

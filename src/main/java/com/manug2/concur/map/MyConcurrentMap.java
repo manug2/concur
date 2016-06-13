@@ -1,4 +1,4 @@
-package map;
+package com.manug2.concur.map;
 
 import java.util.Collection;
 import java.util.HashMap;
