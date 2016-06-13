@@ -32,22 +32,28 @@ public class ReEntrantLockQueueTest {
 
     @Test()
     public void should_block_when_taking_from_new_empty_queue() throws InterruptedException {
-        final CountDownLatch latch = new CountDownLatch(1);
+        final CountDownLatch waitLatch = new CountDownLatch(1);
+        final CountDownLatch nowaitLatch = new CountDownLatch(1);
         Thread taker = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     int item = queue.take();
                     System.out.println("taken item = " + item);
-                    latch.countDown();
+                    waitLatch.countDown();
                 } catch(InterruptedException e) {
                     //
+                } catch (IndexOutOfBoundsException e) {
+                    nowaitLatch.countDown();
                 }
             }
         });
         taker.start();
         assertFalse("it seems an item was taken from empty queue",
-                latch.await(100, TimeUnit.MILLISECONDS));
+                waitLatch.await(100, TimeUnit.MILLISECONDS));
+
+        assertFalse("it seems empty queue did not block",
+                nowaitLatch.await(100, TimeUnit.MILLISECONDS));
 
         taker.interrupt();
     }

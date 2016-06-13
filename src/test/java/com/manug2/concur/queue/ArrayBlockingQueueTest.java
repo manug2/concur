@@ -33,6 +33,7 @@ public class ArrayBlockingQueueTest {
     @Test()
     public void should_block_when_taking_from_new_empty_queue() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
+        final CountDownLatch nowaitLatch = new CountDownLatch(1);
         Thread taker = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -42,12 +43,17 @@ public class ArrayBlockingQueueTest {
                     latch.countDown();
                 } catch(InterruptedException e) {
                     //
+                } catch (Exception e) {
+                    nowaitLatch.countDown();
                 }
             }
         });
         taker.start();
         assertFalse("it seems an item was taken from empty queue",
                 latch.await(100, TimeUnit.MILLISECONDS));
+
+        assertFalse("it seems empty queue did not block",
+                nowaitLatch.await(100, TimeUnit.MILLISECONDS));
 
         taker.interrupt();
     }

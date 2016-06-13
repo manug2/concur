@@ -18,15 +18,17 @@ public class MyQueuePerformanceTest extends QueuePerformanceTest {
     @Parameterized.Parameters(name = "{0}-{1}")
     public static List<Object[]> testSuite() {
         List<Object[]> suite = new ArrayList<>(10);
+        suite.add(new Object[] {10*1000*1000,    new ReEntrantLockQueue(1000)});
+
 //        suite.add(new Object[] {1*1000*1000, new NodeListQueue()});
 //        suite.add(new Object[] {10*1000*1000, new NodeListQueue()});
 //        suite.add(new Object[] {1*1000*1000, new SpinWaitQueue()});
 //        suite.add(new Object[] {10*1000*1000, new SpinWaitQueue()});
 //        suite.add(new Object[] {1*1000*1000,    new ArrayLockingQueue(1000)});
 //        suite.add(new Object[] {10*1000*1000,    new ArrayLockingQueue(1000)});
-        suite.add(new Object[] {1*1000,    new ArrayBlockingQueue<Integer>(1000)});
-        suite.add(new Object[] {2*1000,    new ArrayBlockingQueue<Integer>(1000)});
-        suite.add(new Object[] {10*1000,    new ArrayBlockingQueue<Integer>(10000)});
+          suite.add(new Object[] {1*1000,    new ArrayBlockingQueue<Integer>(1000)});
+//        suite.add(new Object[] {2*1000,    new ArrayBlockingQueue<Integer>(1000)});
+//        suite.add(new Object[] {10*1000,    new ArrayBlockingQueue<Integer>(10000)});
         /*
         suite.add(new Object[] {10*1000*1000,   new ArrayLockingQueue(100)});
         suite.add(new Object[] {100*1000*1000,  new ArrayLockingQueue(100)});
