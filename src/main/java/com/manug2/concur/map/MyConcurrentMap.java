@@ -11,35 +11,79 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class MyConcurrentMap<K, V> implements ConcurrentMap<K, V> {
 
-    HashMap<K, V> _map = new HashMap<>(100);
+    Object[] items = new Object[1*1000*1000];
+    Object[] keys = new Object[1*1000*1000];
+    int size = 0;
+
+    //HashMap<K, V> _map = new HashMap<>(100);
     @Override
     public int size() {
-        return _map.size();
+        return size;
+        //return _map.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return _map.isEmpty();
+        return size == 0;
+        //return _map.isEmpty();
     }
 
     @Override
-    public boolean containsKey(Object key) {
-        return _map.containsKey(key);
+    public boolean containsKey(Object k) {
+        for (Object key : keys)
+            if (key != null) {
+                if (key.equals(k))
+                    return true;
+            }
+
+        return false;
+        //return _map.containsKey(key);
     }
 
     @Override
-    public V get(Object key) {
-        return _map.get(key);
+    public V get(Object k) {
+        int index = -1;
+        for (int i=0; i < keys.length; i++) {
+            Object key = keys[i];
+            if (key != null) {
+                if (key.equals(k)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+
+        if (index>-1)
+            return (V) items[index];
+        else
+            return null;
+        //return _map.get(key);
     }
 
     @Override
     public boolean containsValue(Object value) {
-        return _map.containsValue(value);
+        for (Object item : items)
+            if (item != null) {
+                if (item.equals(value))
+                    return true;
+            }
+
+        return false;
+        //return _map.containsValue(value);
     }
 
     @Override
     public V put(K key, V value) {
-        return _map.put(key, value);
+        int key_hash = key.hashCode();
+        keys[key_hash] = key;
+        Object old = items[key_hash];
+        if (old != null)
+            ++size;
+        else
+            keys[key_hash] = key;
+        items[key_hash] = value;
+        return (V) old;
+        //return _map.put(key, value);
     }
 
     @Override
@@ -74,7 +118,15 @@ public class MyConcurrentMap<K, V> implements ConcurrentMap<K, V> {
 
     @Override
     public V putIfAbsent(K key, V value) {
-        return _map.putIfAbsent(key, value);
+        int key_hash = key.hashCode();
+        Object old = items[key_hash];
+        if (old != null)
+            ++size;
+        else
+            keys[key_hash] = key;
+
+        items[key_hash] = value;
+        return (V) old;
     }
 
     @Override
